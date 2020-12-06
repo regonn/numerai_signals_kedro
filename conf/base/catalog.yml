@@ -3,3 +3,92 @@
 # Documentation for this file format can be found in "The Data Catalog"
 # Link: https://kedro.readthedocs.io/en/stable/04_user_guide/04_data_catalog.html
 
+ticker_map:
+  type: pandas.CSVDataSet
+  filepath: https://numerai-signals-public-data.s3-us-west-2.amazonaws.com/signals_ticker_map_w_bbg.csv
+
+example_signal_upload:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/example_signal_upload_data.csv
+
+historical_targets:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/historical_targets.csv
+
+live_universe:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/live_universe.csv
+
+full_data:
+  type: pandas.CSVDataSet
+  filepath: data/03_primary/full_data.csv
+
+full_data_with_features:
+  type: pandas.CSVDataSet
+  filepath: data/03_primary/full_data_with_features.csv
+  load_args:
+    index_col: 0
+    parse_dates:
+      - 0
+  save_args:
+    index: True
+    date_format: "%Y-%m-%d"
+
+feature_names:
+  type: pickle.PickleDataSet
+  filepath: data/04_feature/feature_names.pickle
+
+train_data:
+  type: pandas.CSVDataSet
+  filepath: data/05_model_input/train_data.csv
+  load_args:
+    index_col: 0
+    parse_dates:
+      - 0
+  save_args:
+    index: True
+    date_format: "%Y-%m-%d"
+
+test_data:
+  type: pandas.CSVDataSet
+  filepath: data/05_model_input/test_data.csv
+  load_args:
+    index_col: 0
+    parse_dates:
+      - 0
+  save_args:
+    index: True
+    date_format: "%Y-%m-%d"
+
+trained_model:
+  type: pickle.PickleDataSet
+  filepath: data/06_models/trained_model.pickle
+
+predicted_live_data:
+  type: pandas.CSVDataSet
+  filepath: data/07_model_output/predicted_live_data.csv
+  load_args:
+    index_col: 0
+    parse_dates:
+      - 0
+  save_args:
+    index: True
+    date_format: "%Y-%m-%d"
+
+predicted_test_data:
+  type: pandas.CSVDataSet
+  filepath: data/07_model_output/predicted_test_data.csv
+  load_args:
+    index_col: 0
+    parse_dates:
+      - 0
+  save_args:
+    index: True
+    date_format: "%Y-%m-%d"
+
+submit:
+  type: pandas.CSVDataSet
+  filepath: data/07_model_output/submit.csv
+  save_args:
+    index: False
+    date_format: "%Y-%m-%d"
